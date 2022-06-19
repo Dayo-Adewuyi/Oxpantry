@@ -6,7 +6,6 @@ import UAuth from '@uauth/js'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import * as UAuthWeb3Modal from '@uauth/web3modal'
 import UAuthSPA from '@uauth/js'
-import web3modal from './web3modal'
 
 
 export const ConnectContext = React.createContext();
@@ -299,18 +298,6 @@ export const ConnectProvider = ({ children }) =>{
       // const [web3Modal, setWeb3Modal] = useState()
      const [connectedWallet, setConnectedWallet] = useState(false);
      
-   
-
-    async function connectUWallet() {
-      const provider = await web3modal.connect();
-      console.log(provider)
-      addListeners(provider);
-      const ethersProvider = new providers.Web3Provider(provider)
-      const userAddress = await ethersProvider.getSigner().getAddress()
-      console.log(userAddress)
-      setCurrentAccount(userAddress)
-      setConnectedWallet(true)
-    }
   
     
     
@@ -335,7 +322,6 @@ export const ConnectProvider = ({ children }) =>{
           remFrmBlacklist,
           currentAccount,
           connectedWallet,
-          connectUWallet,
           add2Blacklist,
           fetchPrivate,
           reportedList,
