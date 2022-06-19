@@ -1,14 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Web3ModalProvider } from "./context/Web3ModalContext";
+import providerOptions from "./utils/providerOptions";
+import * as UAuthWeb3Modal from '@uauth/web3modal'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Web3ModalProvider
+      cacheProvider={true}
+      providerOptions={providerOptions}
+      onNewWeb3Modal={UAuthWeb3Modal.registerWeb3Modal}
+    >
+      <App />
+    </Web3ModalProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
